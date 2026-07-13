@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { MoveLeft, MoveRight } from 'lucide-react';
 
-export default function BeforeAfterSlider() {
+export default function BeforeAfterSlider() { 
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -48,11 +48,11 @@ export default function BeforeAfterSlider() {
           onMouseLeave={() => setIsDragging(false)}
           onTouchEnd={() => setIsDragging(false)}
         >
-          {/* Before Image (Dirty/Dusty) */}
+          {/* Before Image (Dirty/Dusty Luxury Car) */}
           <div className="absolute inset-0">
             <img 
-              src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1600&q=80" 
-              alt="Before Detailing"
+              src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=1600&q=80" 
+              alt="Before Detailing - Dusty Car"
               className="w-full h-full object-cover filter brightness-75"
             />
             <div className="absolute bottom-6 left-6 bg-black/70 backdrop-blur-md border border-red-600/30 text-white px-4 py-2 rounded-lg font-semibold text-sm tracking-wider uppercase">
@@ -60,14 +60,14 @@ export default function BeforeAfterSlider() {
             </div>
           </div>
 
-          {/* After Image (Clean/Shiny) */}
+          {/* After Image (Clean/Shiny Luxury Car) */}
           <div 
             className="absolute inset-0 overflow-hidden transition-all duration-75 ease-out"
             style={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` }}
           >
             <img 
               src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1600&q=80" 
-              alt="After Detailing"
+              alt="After Detailing - Shiny Mercedes AMG"
               className="w-full h-full object-cover"
             />
             <div className="absolute bottom-6 right-6 bg-amber-500 text-black px-4 py-2 rounded-lg font-bold text-sm tracking-wider uppercase shadow-lg">

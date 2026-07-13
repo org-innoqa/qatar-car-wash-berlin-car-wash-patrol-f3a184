@@ -69,7 +69,7 @@ const PACKAGES: Package[] = [
   }
 ];
 
-export default function App() {
+export default function App() { 
   const [selectedPackage, setSelectedPackage] = useState<Package>(PACKAGES[1]); // Default to Berlin Premium
 
   const handlePackageSelect = (pkg: Package) => {
@@ -122,16 +122,22 @@ export default function App() {
         <div className="absolute inset-0 bg-black/70 z-10"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-[#08080a] via-transparent to-black/50 z-10"></div>
         
-        {/* Looping Detailing Video */}
+        {/* Looping Detailing Video with reliable CDN sources and poster fallback */}
         <video 
           autoPlay 
           loop 
           muted 
           playsInline
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover z-0 filter brightness-50 contrast-125"
+          poster="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1920&q=80"
         >
           <source 
-            src="https://assets.mixkit.co/videos/preview/mixkit-detailing-a-luxury-car-with-a-sponge-41783-large.mp4" 
+            src="https://player.vimeo.com/external/538571802.sd.mp4?s=7a6b37f50c660500114022009336c50f31739857&profile_id=165&oauth2_token_id=57447761" 
+            type="video/mp4" 
+          />
+          <source 
+            src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c054f4d9b38f1378ea166c20699ca333&profile_id=165&oauth2_token_id=57447761" 
             type="video/mp4" 
           />
           Your browser does not support the video tag.
