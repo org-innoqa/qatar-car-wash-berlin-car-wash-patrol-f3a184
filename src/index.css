@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: #08080a;
+    color: #f3f4f6;
+  }
+}
+
+/* Custom Premium Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #08080a;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f2229;
+  border-radius: 4px;
+  border: 2px solid #08080a;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D4AF37;
+}
+
+/* Carbon fiber subtle texture */
+.carbon-bg {
+  background-image: radial-gradient(rgba(212, 175, 55, 0.15) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Glow effects */
+.gold-glow {
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+}
+.gold-glow-hover:hover {
+  box-shadow: 0 0 35px rgba(212, 175, 55, 0.4);
+}
