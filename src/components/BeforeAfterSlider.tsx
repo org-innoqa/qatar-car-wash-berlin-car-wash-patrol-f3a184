@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { MoveLeft, MoveRight } from 'lucide-react';
+import carAfter from '../assets/comparison/car-after.webp';
+import carBefore from '../assets/comparison/car-before.webp';
 
 export default function BeforeAfterSlider() { 
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -51,9 +53,9 @@ export default function BeforeAfterSlider() {
           {/* Before Image (Dirty/Dusty Luxury Car) */}
           <div className="absolute inset-0">
             <img 
-              src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=1600&q=80" 
-              alt="Before Detailing - Dusty Car"
-              className="w-full h-full object-cover filter brightness-75"
+              src={carBefore}
+              alt="Before detailing - dusty black luxury sedan"
+              className="w-full h-full object-cover"
             />
             <div className="absolute bottom-6 left-6 bg-black/70 backdrop-blur-md border border-red-600/30 text-white px-4 py-2 rounded-lg font-semibold text-sm tracking-wider uppercase">
               Before: Qatar Dust & Swirls
@@ -66,8 +68,8 @@ export default function BeforeAfterSlider() {
             style={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` }}
           >
             <img 
-              src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1600&q=80" 
-              alt="After Detailing - Shiny Mercedes AMG"
+              src={carAfter}
+              alt="After detailing - clean black luxury sedan"
               className="w-full h-full object-cover"
             />
             <div className="absolute bottom-6 right-6 bg-amber-500 text-black px-4 py-2 rounded-lg font-bold text-sm tracking-wider uppercase shadow-lg">
