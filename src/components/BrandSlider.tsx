@@ -2,32 +2,22 @@ import React from 'react';
 
 const BRANDS = [
   {
+    name: 'BOSCH',
+    subtitle: 'Invented for life',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/1/16/Bosch-logo.svg',
+    alt: 'Bosch logo'
+  },
+  {
     name: 'SONAX',
     subtitle: 'German Car Care',
-    mark: 'S',
-    className: 'text-red-500',
-    markClassName: 'bg-red-500 text-white'
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/5/5c/SONAX-Logo.svg',
+    alt: 'SONAX logo'
   },
   {
-    name: 'KARCHER',
-    subtitle: 'Professional Equipment',
-    mark: 'K',
-    className: 'text-yellow-400',
-    markClassName: 'bg-yellow-400 text-black'
-  },
-  {
-    name: 'BRILLER',
-    subtitle: 'Detailing Solutions',
-    mark: 'B',
-    className: 'text-cyan-300',
-    markClassName: 'bg-cyan-300 text-black'
-  },
-  {
-    name: 'BOSCH',
-    subtitle: 'German Engineering',
-    mark: 'B',
-    className: 'text-red-500',
-    markClassName: 'bg-red-500 text-white'
+    name: 'KÄRCHER',
+    subtitle: 'Professional Cleaning Equipment',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/0/0d/Karcher_logo.svg',
+    alt: 'Kärcher logo'
   }
 ];
 
@@ -47,18 +37,18 @@ export default function BrandSlider() {
           {slides.map((brand, index) => (
             <div
               key={`${brand.name}-${index}`}
-              className="w-56 sm:w-64 h-24 shrink-0 bg-black/60 border border-zinc-800 rounded-xl px-5 flex items-center gap-4 transition-colors hover:border-amber-500/50"
+              className="w-56 sm:w-64 h-24 shrink-0 bg-white border border-zinc-700 rounded-xl px-5 py-3 flex flex-col items-center justify-center gap-1 transition-all hover:border-amber-500/70 hover:shadow-[0_0_20px_rgba(212,175,55,0.12)]"
             >
-              <div className={`w-12 h-12 rounded-full flex items-center justify-center font-display font-black text-xl ${brand.markClassName}`}>
-                {brand.mark}
+              <div className="h-14 w-full flex items-center justify-center">
+                <img
+                  src={brand.logo}
+                  alt={brand.alt}
+                  loading="lazy"
+                  className="max-h-full max-w-full object-contain"
+                />
               </div>
-              <div>
-                <div className={`font-display font-black text-xl tracking-[0.12em] ${brand.className}`}>
-                  {brand.name}
-                </div>
-                <div className="text-[9px] text-gray-500 uppercase tracking-wider mt-1">
-                  {brand.subtitle}
-                </div>
+              <div className="text-[9px] text-zinc-500 uppercase tracking-wider font-semibold">
+                {brand.subtitle}
               </div>
             </div>
           ))}
