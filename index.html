@@ -2,6 +2,42 @@
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      (() => {
+        const retryParam = '__asset_retry';
+        const currentUrl = new URL(window.location.href);
+        const retryTime = Number(currentUrl.searchParams.get(retryParam));
+        const recentlyRetried = Number.isFinite(retryTime) && Date.now() - retryTime < 30_000;
+        let retryScheduled = false;
+
+        window.addEventListener(
+          'error',
+          (event) => {
+            const element = event.target;
+            const assetUrl =
+              element instanceof HTMLScriptElement
+                ? element.src
+                : element instanceof HTMLLinkElement && element.rel === 'stylesheet'
+                  ? element.href
+                  : '';
+
+            if (!assetUrl || retryScheduled || recentlyRetried) return;
+
+            const parsedAssetUrl = new URL(assetUrl, window.location.href);
+            if (parsedAssetUrl.origin !== window.location.origin || !parsedAssetUrl.pathname.startsWith('/assets/')) {
+              return;
+            }
+
+            retryScheduled = true;
+            window.setTimeout(() => {
+              currentUrl.searchParams.set(retryParam, String(Date.now()));
+              window.location.replace(currentUrl.toString());
+            }, 1_000);
+          },
+          true,
+        );
+      })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🇩🇪</text></svg>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Berlin Car Wash Patrol | German Luxury Car Care Qatar</title>
