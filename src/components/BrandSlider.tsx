@@ -1,23 +1,37 @@
 import React from 'react';
+import boschLogo from '../assets/brands/bosch.png';
+import brillerLogo from '../assets/brands/briller.png';
+import karcherLogo from '../assets/brands/karcher.png';
+import sonaxLogo from '../assets/brands/sonax.png';
 
 const BRANDS = [
   {
+    name: 'BRILLER',
+    subtitle: 'Premium Car Care',
+    logo: brillerLogo,
+    alt: 'Briller Car Care logo',
+    imageClassName: 'max-h-full max-w-full object-contain'
+  },
+  {
     name: 'BOSCH',
     subtitle: 'Invented for life',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/1/16/Bosch-logo.svg',
-    alt: 'Bosch logo'
+    logo: boschLogo,
+    alt: 'Bosch logo',
+    imageClassName: 'h-full w-auto max-w-none object-contain scale-[3.2]'
   },
   {
     name: 'SONAX',
     subtitle: 'German Car Care',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/5/5c/SONAX-Logo.svg',
-    alt: 'SONAX logo'
+    logo: sonaxLogo,
+    alt: 'SONAX logo',
+    imageClassName: 'h-full w-auto max-w-none object-contain scale-[3.2]'
   },
   {
     name: 'KÄRCHER',
     subtitle: 'Professional Cleaning Equipment',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/0/0d/Karcher_logo.svg',
-    alt: 'Kärcher logo'
+    logo: karcherLogo,
+    alt: 'Kärcher logo',
+    imageClassName: 'max-h-full max-w-full object-contain'
   }
 ];
 
@@ -37,14 +51,14 @@ export default function BrandSlider() {
           {slides.map((brand, index) => (
             <div
               key={`${brand.name}-${index}`}
-              className="w-56 sm:w-64 h-24 shrink-0 bg-white border border-zinc-700 rounded-xl px-5 py-3 flex flex-col items-center justify-center gap-1 transition-all hover:border-amber-500/70 hover:shadow-[0_0_20px_rgba(212,175,55,0.12)]"
+              className="w-56 sm:w-64 h-28 shrink-0 bg-white border border-zinc-700 rounded-xl px-5 py-3 flex flex-col items-center justify-center gap-2 transition-all hover:border-amber-500/70 hover:shadow-[0_0_20px_rgba(212,175,55,0.12)]"
             >
-              <div className="h-14 w-full flex items-center justify-center">
+              <div className="h-16 w-full overflow-hidden flex items-center justify-center">
                 <img
                   src={brand.logo}
                   alt={brand.alt}
                   loading="lazy"
-                  className="max-h-full max-w-full object-contain"
+                  className={brand.imageClassName}
                 />
               </div>
               <div className="text-[9px] text-zinc-500 uppercase tracking-wider font-semibold">
