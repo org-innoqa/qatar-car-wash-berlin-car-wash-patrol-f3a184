@@ -41,3 +41,16 @@
 .gold-glow-hover:hover {
   box-shadow: 0 0 35px rgba(212, 175, 55, 0.4);
 }
+
+@keyframes brand-slider {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 0.5rem));
+  }
+}
+
+.animate-brand-slider {
+  animation: brand-slider 24s linear infinite;
+}
