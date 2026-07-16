@@ -145,7 +145,7 @@ export default function App() {
 
         {/* German Flag Accent Line at bottom of Hero */}
         <div className="absolute bottom-0 left-0 right-0 h-1 flex z-20">
-          <div className="w-1/3 h-full bg-black"></div>
+          <div className="w-1/3 h-full bg-teal-500"></div>
           <div className="w-1/3 h-full bg-red-600"></div>
           <div className="w-1/3 h-full bg-amber-500"></div>
         </div>
