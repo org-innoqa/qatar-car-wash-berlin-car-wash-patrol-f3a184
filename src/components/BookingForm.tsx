@@ -17,10 +17,11 @@ interface AddOn {
 }
 
 const ADD_ONS: AddOn[] = [
-  { id: 'ozon', name: 'Interior Ozon Odor Elimination', price: 150, description: 'Removes deep-seated bad smells, bacteria, and allergens using German ozone tech.' },
-  { id: 'leather', name: 'Leather Deep Nourishment & Protection', price: 250, description: 'Premium German leather balms to restore softness and prevent cracking.' },
-  { id: 'engine', name: 'Engine Bay German Precision Clean', price: 200, description: 'Safe, detailed engine bay cleaning with specialized dry-steam & protective sealants.' },
-  { id: 'rain', name: 'Glass Rain-Repellent Nano Coating', price: 150, description: 'Ultra-hydrophobic coating for all windows to ensure maximum visibility during dust/rain.' },
+  { id: 'clinical', name: 'Interior & AC Clinical Disinfection', price: 50, description: 'German technology for 99% bacteria, virus, and odor elimination.' },
+  { id: 'leather', name: 'Leather Deep Nourishment & Protection', price: 50, description: 'Warm leather balm treatment for softness, protection, and crack prevention.' },
+  { id: 'glass', name: 'Glass Rain & Dust Repellent', price: 10, description: 'Nano coating for water beading and protection against dust scratches.' },
+  { id: 'carpet', name: 'Carpet Deep Clean', price: 20, description: 'Carpet hand wash with German carpet-care shampoo.' },
+  { id: 'engine', name: 'Engine Clean', price: 30, description: 'Low-pressure or steam cleaning with a Canadian specialist engine cleaner.' },
 ];
 
 export default function BookingForm({ packages, selectedPackage, onPackageChange }: BookingFormProps) {

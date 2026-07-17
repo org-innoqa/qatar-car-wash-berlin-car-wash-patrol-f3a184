@@ -10,29 +10,28 @@ import heroCarWash from './assets/hero/luxury-car-wash.webp';
 const PACKAGES: Package[] = [
   {
     id: 'klassik',
-    name: 'Klassik Wash',
-    price: 150,
-    tagline: 'Essential premium care for daily luxury driving.',
+    name: 'Klassik Autowäsche',
+    price: 50,
+    tagline: 'Essential German-quality exterior care.',
     features: [
-      'Premium exterior hand wash with German pH-neutral shampoo',
-      'Interior vacuuming & dust-off',
-      'Wheel cleaning & tire dressing',
-      'Streak-free window cleaning',
-      'Door jambs wiped down'
+      'High-pressure wash',
+      'Hand wash with German pH-neutral shine shampoo',
+      'Hand dry',
+      'Wheel cleaning with dust-shield protection',
+      'Tire shine'
     ],
     addOnsAvailable: false
   },
   {
     id: 'berlin-premium',
     name: 'Berlin Premium',
-    price: 290,
-    tagline: 'Deep gloss enhancement & protective wax coating.',
+    price: 130,
+    tagline: 'Complete exterior and interior maintenance.',
     features: [
-      'Everything in Klassik Wash +',
-      'Premium German Carnauba Wax protection',
-      'Deep interior wipe-down & sanitization',
-      'Exhaust tip polishing',
-      'Air vents detailed & dusted',
+      'Everything in Klassik Autowäsche',
+      'Interior vacuuming & dust-off',
+      'Streak-free window cleaning',
+      'Door jambs wiped down',
       'Unlocks premium add-ons'
     ],
     isPopular: true,
@@ -40,30 +39,27 @@ const PACKAGES: Package[] = [
   },
   {
     id: 'deutscher-standard',
-    name: 'Deutscher Standard',
-    price: 490,
-    tagline: 'Full paint decontamination & leather restoration.',
+    name: 'Deutscher Standart',
+    price: 270,
+    tagline: 'Machine-polished gloss with lasting wax protection.',
     features: [
-      'Everything in Berlin Premium +',
-      'Paint clay bar decontamination',
-      'Premium polymer sealant (up to 6 months protection)',
-      'Leather cleaning & deep conditioning',
+      'Everything in Berlin Premium',
       'Matte finish dashboard UV protection',
+      'Premium one-cut machine polish',
+      'Premium machine wax shield (up to 3 months protection)',
       'Unlocks premium add-ons'
     ],
     addOnsAvailable: true
   },
   {
     id: 'meisterklasse',
-    name: 'Meisterklasse Detail',
-    price: 990,
-    tagline: 'The ultimate German detailing experience.',
+    name: 'Meister Klasse',
+    price: 370,
+    tagline: 'Extended ceramic protection and premium leather care.',
     features: [
-      'The ultimate German detailing experience',
-      'Multi-stage paint correction prep',
-      'Premium ceramic spray coating (up to 12 months protection)',
-      'Deep steam cleaning of all interior surfaces',
-      'Wheel-off deep barrel cleaning',
+      'Everything in Deutscher Standart',
+      'Premium polymer ceramic shield (up to 8 months protection)',
+      'Leather cleaning & deep conditioning',
       'Unlocks premium add-ons'
     ],
     addOnsAvailable: true
@@ -317,19 +313,20 @@ export default function App() {
             <div>
               <h4 className="font-bold text-white uppercase tracking-wider mb-3">Our Services</h4>
               <ul className="space-y-2">
-                <li><a href="#packages" className="hover:text-amber-400 transition-colors">Klassik Wash</a></li>
+                <li><a href="#packages" className="hover:text-amber-400 transition-colors">Klassik Autowäsche</a></li>
                 <li><a href="#packages" className="hover:text-amber-400 transition-colors">Berlin Premium</a></li>
-                <li><a href="#packages" className="hover:text-amber-400 transition-colors">Deutscher Standard</a></li>
-                <li><a href="#packages" className="hover:text-amber-400 transition-colors">Meisterklasse Detail</a></li>
+                <li><a href="#packages" className="hover:text-amber-400 transition-colors">Deutscher Standart</a></li>
+                <li><a href="#packages" className="hover:text-amber-400 transition-colors">Meister Klasse</a></li>
               </ul>
             </div>
             <div>
               <h4 className="font-bold text-white uppercase tracking-wider mb-3">Add-ons</h4>
               <ul className="space-y-2">
-                <li>Ozon Odor Elimination</li>
+                <li>Interior & AC Clinical Disinfection</li>
                 <li>Leather Deep Nourishment</li>
-                <li>Engine Bay Precision Clean</li>
-                <li>Glass Rain-Repellent Nano</li>
+                <li>Glass Rain & Dust Repellent</li>
+                <li>Carpet Deep Clean</li>
+                <li>Engine Clean</li>
               </ul>
             </div>
             <div>
