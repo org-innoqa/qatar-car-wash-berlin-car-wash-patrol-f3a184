@@ -88,7 +88,12 @@ export default function App() {
       <header className="absolute top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-sm border-b border-zinc-900/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <a href="#" className="flex items-center gap-3" aria-label="Berlin Wash Patrol home">
-            <img src={brandLogo} alt="Berlin Wash Patrol" className="h-14 w-14 rounded-xl object-contain" />
+            <img
+              src={brandLogo}
+              alt="Berlin Wash Patrol"
+              data-critical-asset="true"
+              className="h-14 w-14 rounded-xl object-contain"
+            />
             <div className="hidden flex-col sm:flex">
               <span className="font-display font-black text-lg sm:text-xl tracking-wider text-white flex items-center gap-2">
                 <span className="text-red-500">BERLIN</span> WASH <span className="text-yellow-400">PATROL</span>
@@ -310,7 +315,12 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div className="space-y-3">
-              <img src={brandLogo} alt="Berlin Wash Patrol" className="h-24 w-24 rounded-xl object-contain" />
+              <img
+                src={brandLogo}
+                alt="Berlin Wash Patrol"
+                data-critical-asset="true"
+                className="h-24 w-24 rounded-xl object-contain"
+              />
               <span className="font-display font-black text-base tracking-wider text-white">
                 <span className="text-red-500">BERLIN</span> WASH <span className="text-yellow-400">PATROL</span>
               </span>

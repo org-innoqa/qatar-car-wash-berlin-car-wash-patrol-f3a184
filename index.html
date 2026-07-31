@@ -19,6 +19,8 @@
                 ? element.src
                 : element instanceof HTMLLinkElement && element.rel === 'stylesheet'
                   ? element.href
+                  : element instanceof HTMLImageElement && element.dataset.criticalAsset === 'true'
+                    ? element.src
                   : '';
 
             if (!assetUrl || retryScheduled || recentlyRetried) return;
