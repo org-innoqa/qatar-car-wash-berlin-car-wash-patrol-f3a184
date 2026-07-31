@@ -86,7 +86,7 @@ export default function AppSubscription() {
             <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-6 sm:p-8 relative">
               {/* German Flag Accent */}
               <div className="absolute top-0 left-0 right-0 h-1 flex">
-                <div className="w-1/3 h-full bg-black"></div>
+                <div className="w-1/3 h-full bg-blue-600"></div>
                 <div className="w-1/3 h-full bg-red-600"></div>
                 <div className="w-1/3 h-full bg-amber-500"></div>
               </div>

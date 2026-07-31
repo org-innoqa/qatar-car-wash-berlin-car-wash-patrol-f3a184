@@ -25,21 +25,21 @@
   border: 2px solid #08080a;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #D4AF37;
+  background: #dc2626;
 }
 
 /* Carbon fiber subtle texture */
 .carbon-bg {
-  background-image: radial-gradient(rgba(212, 175, 55, 0.15) 1px, transparent 0);
+  background-image: radial-gradient(rgba(37, 99, 235, 0.18) 1px, transparent 0);
   background-size: 24px 24px;
 }
 
 /* Glow effects */
 .gold-glow {
-  box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+  box-shadow: 0 0 25px rgba(220, 38, 38, 0.25), 0 0 45px rgba(37, 99, 235, 0.12);
 }
 .gold-glow-hover:hover {
-  box-shadow: 0 0 35px rgba(212, 175, 55, 0.4);
+  box-shadow: 0 0 35px rgba(220, 38, 38, 0.32), 0 0 55px rgba(37, 99, 235, 0.18);
 }
 
 @keyframes brand-slider {

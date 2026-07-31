@@ -7,7 +7,7 @@ export default function GermanQualityBadge() {
     <div className="bg-gradient-to-r from-zinc-900 via-black to-zinc-900 border border-amber-500/30 rounded-2xl p-8 max-w-5xl mx-auto my-12 relative overflow-hidden">
       {/* German Flag Accent Line */}
       <div className="absolute top-0 left-0 right-0 h-1.5 flex">
-        <div className="w-1/3 h-full bg-black"></div>
+        <div className="w-1/3 h-full bg-blue-600"></div>
         <div className="w-1/3 h-full bg-red-600"></div>
         <div className="w-1/3 h-full bg-amber-500"></div>
       </div>

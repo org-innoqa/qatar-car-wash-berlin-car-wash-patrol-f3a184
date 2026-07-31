@@ -5,17 +5,19 @@ import PackageCard, { Package } from './components/PackageCard';
 import BookingForm from './components/BookingForm';
 import AppSubscription from './components/AppSubscription';
 import GermanQualityBadge from './components/GermanQualityBadge';
+import PatrolGallery from './components/PatrolGallery';
 import heroCarWash from './assets/hero/luxury-car-wash.webp';
+import brandLogo from './assets/brand/berlin-wash-patrol-logo.webp';
 
 const PACKAGES: Package[] = [
   {
     id: 'klassik',
     name: 'Klassik Autowäsche',
-    price: 50,
+    price: 40,
     tagline: 'Essential German-quality exterior care.',
     features: [
-      'High-pressure wash',
-      'Hand wash with German pH-neutral shine shampoo',
+      'Pressure wash',
+      'Hand wash with German dust-encapsulating, pH-neutral shine foam shampoo',
       'Hand dry',
       'Wheel cleaning with dust-shield protection',
       'Tire shine'
@@ -45,8 +47,7 @@ const PACKAGES: Package[] = [
     features: [
       'Everything in Berlin Premium',
       'Matte finish dashboard UV protection',
-      'Premium one-cut machine polish',
-      'Premium machine wax shield (up to 3 months protection)',
+      'Premium one-cut machine wax shield (up to 3 months protection)',
       'Unlocks premium add-ons'
     ],
     addOnsAvailable: true
@@ -54,10 +55,12 @@ const PACKAGES: Package[] = [
   {
     id: 'meisterklasse',
     name: 'Meister Klasse',
-    price: 370,
+    price: 520,
     tagline: 'Extended ceramic protection and premium leather care.',
     features: [
       'Everything in Deutscher Standart',
+      'Deep interior clean',
+      'Premium one-cut machine polish',
       'Premium polymer ceramic shield (up to 8 months protection)',
       'Leather cleaning & deep conditioning',
       'Unlocks premium add-ons'
@@ -79,33 +82,34 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#08080a] text-gray-100 selection:bg-amber-500 selection:text-black">
+    <div className="min-h-screen bg-[#08080a] text-gray-100 selection:bg-red-600 selection:text-white">
       
       {/* Premium Header / Navigation */}
       <header className="absolute top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-sm border-b border-zinc-900/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="flex flex-col">
+          <a href="#" className="flex items-center gap-3" aria-label="Berlin Wash Patrol home">
+            <img src={brandLogo} alt="Berlin Wash Patrol" className="h-14 w-14 rounded-xl object-contain" />
+            <div className="hidden flex-col sm:flex">
               <span className="font-display font-black text-lg sm:text-xl tracking-wider text-white flex items-center gap-2">
-                BERLIN <span className="text-amber-400">CAR WASH PATROL</span>
+                <span className="text-red-500">BERLIN</span> WASH <span className="text-yellow-400">PATROL</span>
               </span>
               <span className="text-[9px] text-gray-400 tracking-[0.25em] uppercase font-bold">
-                German Luxury Detailing • Qatar
+                Mobile Car Care · Qatar
               </span>
             </div>
-          </div>
+          </a>
           
-          <div className="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-wider text-gray-300">
-            <a href="#why-us" className="hover:text-amber-400 transition-colors">Why German Quality</a>
-            <a href="#packages" className="hover:text-amber-400 transition-colors">Packages</a>
-            <a href="#tokens" className="hover:text-amber-400 transition-colors">Token Packs</a>
-            <a href="#app" className="hover:text-amber-400 transition-colors">Mobile App</a>
+          <div className="hidden items-center gap-6 text-xs font-semibold uppercase tracking-wider text-gray-300 lg:flex">
+            <a href="#why-us" className="transition-colors hover:text-yellow-400">German Quality</a>
+            <a href="#patrol" className="transition-colors hover:text-blue-400">Our Patrol</a>
+            <a href="#packages" className="transition-colors hover:text-red-400">Packages</a>
+            <a href="#app" className="transition-colors hover:text-yellow-400">Mobile App</a>
           </div>
 
           <div>
             <a 
               href="#booking-section"
-              className="bg-amber-500 hover:bg-amber-600 text-black font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-xl transition-all duration-300 shadow-lg shadow-amber-500/10 flex items-center gap-1.5"
+              className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-red-600 to-red-700 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-red-600/20 transition-all duration-300 hover:from-red-500 hover:to-red-600 sm:px-5"
             >
               Book Patrol Now
             </a>
@@ -128,19 +132,19 @@ export default function App() {
 
         {/* German Flag Accent Line at bottom of Hero */}
         <div className="absolute bottom-0 left-0 right-0 h-1 flex z-20">
-          <div className="w-1/3 h-full bg-teal-500"></div>
+          <div className="w-1/3 h-full bg-blue-600"></div>
           <div className="w-1/3 h-full bg-red-600"></div>
           <div className="w-1/3 h-full bg-amber-500"></div>
         </div>
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20 space-y-8 py-12">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-amber-500/30 text-amber-400 text-xs font-bold tracking-widest uppercase">
+          <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/40 bg-black/60 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-yellow-400 backdrop-blur-md">
             🇩🇪 Certified German Detailing Experts
           </div>
 
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-black text-white tracking-tight leading-none">
             RESHAPING QATAR'S <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-300">
+            <span className="bg-gradient-to-r from-red-500 via-yellow-400 to-blue-500 bg-clip-text text-transparent">
               CAR WASH INDUSTRY
             </span>
           </h1>
@@ -152,13 +156,13 @@ export default function App() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <a 
               href="#packages"
-              className="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-black font-bold px-8 py-4 rounded-xl shadow-xl shadow-amber-500/20 transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2 text-sm uppercase tracking-wider"
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-red-600 to-red-700 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-xl shadow-red-600/20 transition-all duration-300 hover:scale-[1.02] hover:from-red-500 hover:to-red-600 sm:w-auto"
             >
               Explore Packages <ArrowRight className="w-4 h-4" />
             </a>
             <a 
               href="#booking-section"
-              className="w-full sm:w-auto bg-zinc-900/80 hover:bg-zinc-800 text-white border border-zinc-700 font-bold px-8 py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 text-sm uppercase tracking-wider"
+              className="flex w-full items-center justify-center gap-2 rounded-xl border border-blue-500/50 bg-zinc-900/80 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-blue-950/70 sm:w-auto"
             >
               Configure Wash & Book
             </a>
@@ -170,7 +174,7 @@ export default function App() {
               <div className="text-[10px] sm:text-xs text-gray-400 uppercase tracking-wider mt-1">German Products</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-display font-black text-amber-400">Certified</div>
+              <div className="text-2xl sm:text-3xl font-display font-black text-yellow-400">Certified</div>
               <div className="text-[10px] sm:text-xs text-gray-400 uppercase tracking-wider mt-1">Detailing Experts</div>
             </div>
             <div className="text-center">
@@ -192,6 +196,9 @@ export default function App() {
         </div>
       </section>
 
+      {/* Our mobile patrol gallery */}
+      <PatrolGallery />
+
       {/* Before/After Interactive Slider */}
       <BeforeAfterSlider />
 
@@ -200,9 +207,9 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-amber-500 font-semibold tracking-wider uppercase text-sm">Premium Detailing Tiers</span>
+            <span className="text-blue-400 font-semibold tracking-wider uppercase text-sm">Premium Detailing Tiers</span>
             <h2 className="text-3xl sm:text-4xl font-display font-bold text-white mt-2">
-              Select Your <span className="text-amber-400">Berlin Patrol</span> Package
+              Select Your <span className="text-red-500">Berlin Patrol</span> Package
             </h2>
             <p className="text-gray-400 mt-4">
               Every package is executed with meticulous German precision. Select a package below to configure your booking and add-ons.
@@ -303,8 +310,9 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div className="space-y-3">
+              <img src={brandLogo} alt="Berlin Wash Patrol" className="h-24 w-24 rounded-xl object-contain" />
               <span className="font-display font-black text-base tracking-wider text-white">
-                BERLIN <span className="text-amber-400">CAR WASH PATROL</span>
+                <span className="text-red-500">BERLIN</span> WASH <span className="text-yellow-400">PATROL</span>
               </span>
               <p className="text-gray-400 leading-relaxed">
                 Reshaping the luxury car wash industry in Qatar with certified German detailing standards and premium products.
@@ -325,7 +333,7 @@ export default function App() {
                 <li>Interior & AC Clinical Disinfection</li>
                 <li>Leather Deep Nourishment</li>
                 <li>Glass Rain & Dust Repellent</li>
-                <li>Carpet Deep Clean</li>
+                <li>Deep Clean Interior</li>
                 <li>Engine Clean</li>
               </ul>
             </div>

@@ -17,11 +17,11 @@ interface AddOn {
 }
 
 const ADD_ONS: AddOn[] = [
-  { id: 'clinical', name: 'Interior & AC Clinical Disinfection', price: 50, description: 'German technology for 99% bacteria, virus, and odor elimination.' },
-  { id: 'leather', name: 'Leather Deep Nourishment & Protection', price: 50, description: 'Warm leather balm treatment for softness, protection, and crack prevention.' },
+  { id: 'clinical', name: 'Interior & AC Clinical Disinfection', price: 30, description: 'German technology for 99% bacteria, virus, and odor elimination.' },
+  { id: 'leather', name: 'Leather Deep Nourishment & Protection', price: 20, description: 'Warm leather balm treatment for softness, protection, and crack prevention.' },
   { id: 'glass', name: 'Glass Rain & Dust Repellent', price: 10, description: 'Nano coating for water beading and protection against dust scratches.' },
-  { id: 'carpet', name: 'Carpet Deep Clean', price: 20, description: 'Carpet hand wash with German carpet-care shampoo.' },
-  { id: 'engine', name: 'Engine Clean', price: 30, description: 'Low-pressure or steam cleaning with a Canadian specialist engine cleaner.' },
+  { id: 'interior', name: 'Deep Clean Interior', price: 250, description: 'Interior hand wash and carpet wash with German interior-care shampoo.' },
+  { id: 'engine', name: 'Engine Steam Clean', price: 30, description: 'Steam cleaning with a Canadian specialist engine cleaner.' },
 ];
 
 export default function BookingForm({ packages, selectedPackage, onPackageChange }: BookingFormProps) {
@@ -126,14 +126,14 @@ export default function BookingForm({ packages, selectedPackage, onPackageChange
 
   return (
     <div id="booking-section" className="bg-zinc-950 border border-zinc-800 rounded-3xl p-6 sm:p-10 max-w-4xl mx-auto shadow-2xl relative overflow-hidden">
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="text-center max-w-2xl mx-auto mb-10">
-        <span className="text-amber-500 font-semibold tracking-wider uppercase text-xs px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20">
+        <span className="text-blue-300 font-semibold tracking-wider uppercase text-xs px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20">
           Instant Booking
         </span>
         <h2 className="text-2xl sm:text-3xl font-display font-bold text-white mt-3">
-          Configure Your <span className="text-amber-400">German Wash</span>
+          Configure Your <span className="text-red-500">German Wash</span>
         </h2>
         <p className="text-gray-400 text-sm mt-2">
           Select your package, customize with premium add-ons, and instantly send your booking details to our WhatsApp patrol team.
@@ -153,12 +153,12 @@ export default function BookingForm({ packages, selectedPackage, onPackageChange
                 onClick={() => onPackageChange(pkg)}
                 className={`p-3 rounded-xl border text-left transition-all duration-200 ${
                   selectedPackage.id === pkg.id
-                    ? 'bg-amber-500/10 border-amber-500 text-white'
+                    ? 'bg-blue-500/10 border-blue-500 text-white'
                     : 'bg-zinc-900/50 border-zinc-800 text-gray-400 hover:border-zinc-700'
                 }`}
               >
                 <div className="font-bold text-xs sm:text-sm truncate">{pkg.name}</div>
-                <div className="text-amber-400 font-bold text-xs mt-1">{pkg.price} QAR</div>
+                <div className="text-yellow-400 font-bold text-xs mt-1">{pkg.price} QAR</div>
               </button>
             ))}
           </div>
@@ -187,17 +187,17 @@ export default function BookingForm({ packages, selectedPackage, onPackageChange
                   onClick={() => toggleAddOn(addOn.id)}
                   className={`p-4 rounded-xl border cursor-pointer flex items-start gap-3 transition-all duration-200 ${
                     isChecked
-                      ? 'bg-zinc-900 border-amber-500/60 text-white'
+                      ? 'bg-blue-950/30 border-blue-500/60 text-white'
                       : 'bg-zinc-900/30 border-zinc-800 text-gray-400 hover:border-zinc-700'
                   }`}
                 >
-                  <div className="mt-1 text-amber-500">
+                  <div className="mt-1 text-blue-400">
                     {isChecked ? <CheckSquare className="w-5 h-5" /> : <Square className="w-5 h-5" />}
                   </div>
                   <div className="flex-1">
                     <div className="flex justify-between items-start">
                       <span className="font-semibold text-sm text-white">{addOn.name}</span>
-                      <span className="text-xs font-bold text-amber-400 shrink-0 ml-2">+{addOn.price} QAR</span>
+                      <span className="text-xs font-bold text-yellow-400 shrink-0 ml-2">+{addOn.price} QAR</span>
                     </div>
                     <p className="text-xs text-gray-400 mt-1 leading-relaxed">{addOn.description}</p>
                   </div>
@@ -277,7 +277,7 @@ export default function BookingForm({ packages, selectedPackage, onPackageChange
           <div className="text-center sm:text-left">
             <span className="text-xs text-gray-400 uppercase tracking-wider block">Estimated Total Price</span>
             <div className="flex items-baseline gap-2 justify-center sm:justify-start">
-              <span className="text-3xl sm:text-4xl font-display font-black text-amber-400">
+              <span className="text-3xl sm:text-4xl font-display font-black text-yellow-400">
                 {calculateTotal()}
               </span>
               <span className="text-sm font-bold text-gray-400">QAR</span>
@@ -287,7 +287,7 @@ export default function BookingForm({ packages, selectedPackage, onPackageChange
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full sm:w-auto bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-bold px-8 py-4 rounded-xl shadow-xl shadow-amber-500/10 flex items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.02] disabled:opacity-50"
+            className="w-full sm:w-auto bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold px-8 py-4 rounded-xl shadow-xl shadow-red-600/20 flex items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.02] disabled:opacity-50"
           >
             {isSubmitting ? (
               <span>Connecting to WhatsApp...</span>
