@@ -334,7 +334,7 @@ export default function App() {
               <p className="text-gray-400 leading-relaxed">
                 Doha, Qatar<br />
                 Patrol Hours: 8:00 AM - 10:00 PM<br />
-                WhatsApp: +974 3333 4444
+                WhatsApp: +974 5123 4443
               </p>
             </div>
           </div>
