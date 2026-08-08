@@ -6,6 +6,7 @@ import BookingForm from './components/BookingForm';
 import AppSubscription from './components/AppSubscription';
 import GermanQualityBadge from './components/GermanQualityBadge';
 import PatrolGallery from './components/PatrolGallery';
+import PriceCountdown from './components/PriceCountdown';
 import heroCarWash from './assets/hero/luxury-car-wash.webp';
 import brandLogo from './assets/brand/berlin-wash-patrol-logo.webp';
 
@@ -14,6 +15,7 @@ const PACKAGES: Package[] = [
     id: 'klassik',
     name: 'Klassik Autowäsche',
     price: 40,
+    originalPrice: 50,
     tagline: 'Essential German-quality exterior care.',
     features: [
       'Pressure wash',
@@ -28,6 +30,7 @@ const PACKAGES: Package[] = [
     id: 'berlin-premium',
     name: 'Berlin Premium',
     price: 130,
+    originalPrice: 150,
     tagline: 'Complete exterior and interior maintenance.',
     features: [
       'Everything in Klassik Autowäsche',
@@ -43,6 +46,7 @@ const PACKAGES: Package[] = [
     id: 'deutscher-standard',
     name: 'Deutscher Standart',
     price: 270,
+    originalPrice: 300,
     tagline: 'Machine-polished gloss with lasting wax protection.',
     features: [
       'Everything in Berlin Premium',
@@ -56,6 +60,7 @@ const PACKAGES: Package[] = [
     id: 'meisterklasse',
     name: 'Meister Klasse',
     price: 520,
+    originalPrice: 600,
     tagline: 'Extended ceramic protection and premium leather care.',
     features: [
       'Everything in Deutscher Standart',
@@ -210,6 +215,7 @@ export default function App() {
       {/* Packages Section */}
       <section id="packages" className="py-20 bg-black relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <PriceCountdown />
           
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-blue-400 font-semibold tracking-wider uppercase text-sm">Premium Detailing Tiers</span>

@@ -13,12 +13,13 @@ interface AddOn {
   id: string;
   name: string;
   price: number;
+  originalPrice?: number;
   description: string;
 }
 
 const ADD_ONS: AddOn[] = [
-  { id: 'clinical', name: 'Interior & AC Clinical Disinfection', price: 30, description: 'German technology for 99% bacteria, virus, and odor elimination.' },
-  { id: 'leather', name: 'Leather Deep Nourishment & Protection', price: 20, description: 'Warm leather balm treatment for softness, protection, and crack prevention.' },
+  { id: 'clinical', name: 'Interior & AC Clinical Disinfection', price: 30, originalPrice: 50, description: 'German technology for 99% bacteria, virus, and odor elimination.' },
+  { id: 'leather', name: 'Leather Deep Nourishment & Protection', price: 20, originalPrice: 30, description: 'Warm leather balm treatment for softness, protection, and crack prevention.' },
   { id: 'glass', name: 'Glass Rain & Dust Repellent', price: 10, description: 'Nano coating for water beading and protection against dust scratches.' },
   { id: 'interior', name: 'Deep Clean Interior', price: 250, description: 'Interior hand wash and carpet wash with German interior-care shampoo.' },
   { id: 'engine', name: 'Engine Steam Clean', price: 30, description: 'Steam cleaning with a Canadian specialist engine cleaner.' },
@@ -158,7 +159,14 @@ export default function BookingForm({ packages, selectedPackage, onPackageChange
                 }`}
               >
                 <div className="font-bold text-xs sm:text-sm truncate">{pkg.name}</div>
-                <div className="text-yellow-400 font-bold text-xs mt-1">{pkg.price} QAR</div>
+                <div className="mt-1 flex items-baseline gap-1.5">
+                  {pkg.originalPrice && (
+                    <span className="text-[10px] font-bold text-red-500 line-through decoration-red-500">
+                      {pkg.originalPrice}
+                    </span>
+                  )}
+                  <span className="text-xs font-bold text-green-400">{pkg.price} QAR</span>
+                </div>
               </button>
             ))}
           </div>
@@ -197,7 +205,12 @@ export default function BookingForm({ packages, selectedPackage, onPackageChange
                   <div className="flex-1">
                     <div className="flex justify-between items-start">
                       <span className="font-semibold text-sm text-white">{addOn.name}</span>
-                      <span className="text-xs font-bold text-yellow-400 shrink-0 ml-2">+{addOn.price} QAR</span>
+                      <span className="ml-2 flex shrink-0 items-center gap-1.5 text-xs font-bold">
+                        {addOn.originalPrice && (
+                          <span className="text-red-500 line-through decoration-red-500">+{addOn.originalPrice}</span>
+                        )}
+                        <span className="text-green-400">+{addOn.price} QAR</span>
+                      </span>
                     </div>
                     <p className="text-xs text-gray-400 mt-1 leading-relaxed">{addOn.description}</p>
                   </div>

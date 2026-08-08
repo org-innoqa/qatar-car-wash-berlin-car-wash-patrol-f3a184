@@ -5,6 +5,7 @@ export interface Package {
   id: string;
   name: string;
   price: number;
+  originalPrice?: number;
   tagline: string;
   features: string[];
   isPopular?: boolean;
@@ -40,8 +41,13 @@ export default function PackageCard({ pkg, isSelected, onSelect }: PackageCardPr
             <p className="text-xs text-gray-400 mt-1">{pkg.tagline}</p>
           </div>
           <div className="text-right">
-            <span className="text-2xl font-display font-black text-yellow-400">{pkg.price}</span>
-            <span className="text-xs text-gray-400 block">QAR</span>
+            {pkg.originalPrice && (
+              <span className="block text-sm font-black text-red-500 line-through decoration-2 decoration-red-500/90">
+                {pkg.originalPrice} QAR
+              </span>
+            )}
+            <span className="text-2xl font-display font-black text-green-400">{pkg.price}</span>
+            <span className="text-xs text-gray-400 block">QAR · Special price</span>
           </div>
         </div>
 
