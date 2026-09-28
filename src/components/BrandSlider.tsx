@@ -3,46 +3,48 @@ import boschLogo from '../assets/brands/bosch.png';
 import brillerLogo from '../assets/brands/briller.png';
 import karcherLogo from '../assets/brands/karcher.png';
 import sonaxLogo from '../assets/brands/sonax.png';
+import { useI18n } from '../i18n';
 
 const BRANDS = [
   {
+    id: 'briller',
     name: 'BRILLER',
-    subtitle: 'Premium Car Care',
     logo: brillerLogo,
     alt: 'Briller Car Care logo',
     imageClassName: 'max-h-full max-w-full object-contain'
   },
   {
+    id: 'bosch',
     name: 'BOSCH',
-    subtitle: 'Invented for life',
     logo: boschLogo,
     alt: 'Bosch logo',
     imageClassName: 'h-full w-auto max-w-none object-contain scale-[3.2]'
   },
   {
+    id: 'sonax',
     name: 'SONAX',
-    subtitle: 'German Car Care',
     logo: sonaxLogo,
     alt: 'SONAX logo',
     imageClassName: 'h-full w-auto max-w-none object-contain scale-[3.2]'
   },
   {
+    id: 'karcher',
     name: 'KÄRCHER',
-    subtitle: 'Professional Cleaning Equipment',
     logo: karcherLogo,
     alt: 'Kärcher logo',
     imageClassName: 'max-h-full max-w-full object-contain'
   }
-];
+] as const;
 
 export default function BrandSlider() {
+  const { t } = useI18n();
   const slides = [...BRANDS, ...BRANDS];
 
   return (
-    <section className="mt-10 pt-8 border-t border-zinc-800/80" aria-label="Product brands">
+    <section className="mt-10 pt-8 border-t border-zinc-800/80" aria-label={t.brands.ariaLabel}>
       <div className="text-center mb-6">
         <span className="text-[10px] text-gray-500 uppercase tracking-[0.3em] font-bold">
-          Our trusted product & equipment references
+          {t.brands.heading}
         </span>
       </div>
 
@@ -62,7 +64,7 @@ export default function BrandSlider() {
                 />
               </div>
               <div className="text-[9px] text-zinc-500 uppercase tracking-wider font-semibold">
-                {brand.subtitle}
+                {t.brands.subtitles[brand.id]}
               </div>
             </div>
           ))}
@@ -70,7 +72,7 @@ export default function BrandSlider() {
       </div>
 
       <p className="text-center text-[10px] text-gray-600 mt-5">
-        Selected for professional German-standard cleaning, polishing and workshop care.
+        {t.brands.footnote}
       </p>
     </section>
   );

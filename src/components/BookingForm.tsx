@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Package } from './PackageCard';
 import { Calendar, MapPin, Car, User, Phone, CheckSquare, Square, Send } from 'lucide-react';
 import { db } from '../lib/db';
+import { useI18n } from '../i18n';
+import en from '../i18n/en';
 
 interface BookingFormProps {
   packages: Package[];
@@ -11,21 +13,21 @@ interface BookingFormProps {
 
 interface AddOn {
   id: string;
-  name: string;
   price: number;
   originalPrice?: number;
-  description: string;
 }
 
+// Names and descriptions live in src/i18n (booking.addOns), keyed by id.
 const ADD_ONS: AddOn[] = [
-  { id: 'clinical', name: 'Interior & AC Clinical Disinfection', price: 30, originalPrice: 50, description: 'German technology for 99% bacteria, virus, and odor elimination.' },
-  { id: 'leather', name: 'Leather Deep Nourishment & Protection', price: 20, originalPrice: 30, description: 'Warm leather balm treatment for softness, protection, and crack prevention.' },
-  { id: 'glass', name: 'Glass Rain & Dust Repellent', price: 10, description: 'Nano coating for water beading and protection against dust scratches.' },
-  { id: 'interior', name: 'Deep Clean Interior', price: 250, description: 'Interior hand wash and carpet wash with German interior-care shampoo.' },
-  { id: 'engine', name: 'Engine Steam Clean', price: 30, description: 'Steam cleaning with a Canadian specialist engine cleaner.' },
+  { id: 'clinical', price: 30, originalPrice: 50 },
+  { id: 'leather', price: 20, originalPrice: 30 },
+  { id: 'glass', price: 10 },
+  { id: 'interior', price: 250 },
+  { id: 'engine', price: 30 },
 ];
 
 export default function BookingForm({ packages, selectedPackage, onPackageChange }: BookingFormProps) {
+  const { t, lang } = useI18n();
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -66,14 +68,14 @@ export default function BookingForm({ packages, selectedPackage, onPackageChange
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !phone || !carDetails || !location || !date) {
-      alert('Please fill in all details to complete your booking.');
+      alert(t.booking.fillAll);
       return;
     }
 
     setIsSubmitting(true);
 
     const activeAddOns = selectedPackage.addOnsAvailable
-      ? ADD_ONS.filter(a => selectedAddOns.includes(a.id)).map(a => a.name)
+      ? ADD_ONS.filter(a => selectedAddOns.includes(a.id)).map(a => en.booking.addOns[a.id].name)
       : [];
 
     const totalPrice = calculateTotal();
@@ -106,7 +108,8 @@ export default function BookingForm({ packages, selectedPackage, onPackageChange
       `📞 *Phone:* ${phone}\n` +
       `🚗 *Car:* ${carDetails}\n` +
       `📍 *Location:* ${location}\n` +
-      `📅 *Preferred Date:* ${date}\n\n` +
+      `📅 *Preferred Date:* ${date}\n` +
+      `🌐 *Language:* ${lang === 'ar' ? 'Arabic' : 'English'}\n\n` +
       `📦 *Selected Package:* ${selectedPackage.name} (${selectedPackage.price} QAR)\n` +
       `✨ *Add-ons:*\n${addOnsText}\n\n` +
       `💰 *Total Price:* ${totalPrice} QAR\n` +
@@ -131,20 +134,20 @@ export default function BookingForm({ packages, selectedPackage, onPackageChange
 
       <div className="text-center max-w-2xl mx-auto mb-10">
         <span className="text-blue-300 font-semibold tracking-wider uppercase text-xs px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20">
-          Instant Booking
+          {t.booking.badge}
         </span>
         <h2 className="text-2xl sm:text-3xl font-display font-bold text-white mt-3">
-          Configure Your <span className="text-red-500">German Wash</span>
+          {t.booking.titleStart} <span className="text-red-500">{t.booking.titleHighlight}</span>
         </h2>
         <p className="text-gray-400 text-sm mt-2">
-          Select your package, customize with premium add-ons, and instantly send your booking details to our WhatsApp patrol team.
+          {t.booking.description}
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-8">
         <div className="space-y-3">
           <label className="block text-sm font-semibold text-amber-400 uppercase tracking-wider">
-            Step 1: Confirm Package
+            {t.booking.step1}
           </label>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {packages.map((pkg) => (
@@ -152,7 +155,7 @@ export default function BookingForm({ packages, selectedPackage, onPackageChange
                 key={pkg.id}
                 type="button"
                 onClick={() => onPackageChange(pkg)}
-                className={`p-3 rounded-xl border text-left transition-all duration-200 ${
+                className={`p-3 rounded-xl border text-start transition-all duration-200 ${
                   selectedPackage.id === pkg.id
                     ? 'bg-blue-500/10 border-blue-500 text-white'
                     : 'bg-zinc-900/50 border-zinc-800 text-gray-400 hover:border-zinc-700'
@@ -165,7 +168,7 @@ export default function BookingForm({ packages, selectedPackage, onPackageChange
                       {pkg.originalPrice}
                     </span>
                   )}
-                  <span className="text-xs font-bold text-green-400">{pkg.price} QAR</span>
+                  <span className="text-xs font-bold text-green-400">{pkg.price} {t.common.qar}</span>
                 </div>
               </button>
             ))}
@@ -175,11 +178,11 @@ export default function BookingForm({ packages, selectedPackage, onPackageChange
         <div className="space-y-3">
           <div className="flex justify-between items-center">
             <label className="block text-sm font-semibold text-amber-400 uppercase tracking-wider">
-              Step 2: Premium Add-ons
+              {t.booking.step2}
             </label>
             {!selectedPackage.addOnsAvailable && (
               <span className="text-xs text-red-500 font-medium bg-red-500/10 px-2 py-0.5 rounded">
-                Not available for {selectedPackage.name}
+                {t.booking.notAvailableFor(selectedPackage.name)}
               </span>
             )}
           </div>
@@ -189,6 +192,7 @@ export default function BookingForm({ packages, selectedPackage, onPackageChange
           }`}>
             {ADD_ONS.map((addOn) => {
               const isChecked = selectedAddOns.includes(addOn.id);
+              const addOnText = t.booking.addOns[addOn.id];
               return (
                 <div
                   key={addOn.id}
@@ -204,15 +208,15 @@ export default function BookingForm({ packages, selectedPackage, onPackageChange
                   </div>
                   <div className="flex-1">
                     <div className="flex justify-between items-start">
-                      <span className="font-semibold text-sm text-white">{addOn.name}</span>
-                      <span className="ml-2 flex shrink-0 items-center gap-1.5 text-xs font-bold">
+                      <span className="font-semibold text-sm text-white">{addOnText.name}</span>
+                      <span className="ms-2 flex shrink-0 items-center gap-1.5 text-xs font-bold">
                         {addOn.originalPrice && (
                           <span className="text-red-500 line-through decoration-red-500">+{addOn.originalPrice}</span>
                         )}
-                        <span className="text-green-400">+{addOn.price} QAR</span>
+                        <span className="text-green-400">+{addOn.price} {t.common.qar}</span>
                       </span>
                     </div>
-                    <p className="text-xs text-gray-400 mt-1 leading-relaxed">{addOn.description}</p>
+                    <p className="text-xs text-gray-400 mt-1 leading-relaxed">{addOnText.description}</p>
                   </div>
                 </div>
               );
@@ -222,78 +226,78 @@ export default function BookingForm({ packages, selectedPackage, onPackageChange
 
         <div className="space-y-4">
           <label className="block text-sm font-semibold text-amber-400 uppercase tracking-wider">
-            Step 3: Your Details
+            {t.booking.step3}
           </label>
           <div className="grid sm:grid-cols-2 gap-4">
             <div className="relative">
-              <User className="absolute left-3.5 top-3.5 w-5 h-5 text-gray-500" />
+              <User className="absolute start-3.5 top-3.5 w-5 h-5 text-gray-500" />
               <input
                 type="text"
-                placeholder="Your Full Name"
+                placeholder={t.booking.placeholders.name}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl py-3 pl-11 pr-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 transition-colors"
+                className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl py-3 ps-11 pe-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 transition-colors"
               />
             </div>
 
             <div className="relative">
-              <Phone className="absolute left-3.5 top-3.5 w-5 h-5 text-gray-500" />
+              <Phone className="absolute start-3.5 top-3.5 w-5 h-5 text-gray-500" />
               <input
                 type="tel"
-                placeholder="WhatsApp Phone Number (e.g. +974...)"
+                placeholder={t.booking.placeholders.phone}
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 required
-                className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl py-3 pl-11 pr-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 transition-colors"
+                className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl py-3 ps-11 pe-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 transition-colors"
               />
             </div>
 
             <div className="relative">
-              <Car className="absolute left-3.5 top-3.5 w-5 h-5 text-gray-500" />
+              <Car className="absolute start-3.5 top-3.5 w-5 h-5 text-gray-500" />
               <input
                 type="text"
-                placeholder="Car Brand & Model (e.g. Porsche Cayenne)"
+                placeholder={t.booking.placeholders.car}
                 value={carDetails}
                 onChange={(e) => setCarDetails(e.target.value)}
                 required
-                className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl py-3 pl-11 pr-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 transition-colors"
+                className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl py-3 ps-11 pe-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 transition-colors"
               />
             </div>
 
             <div className="relative">
-              <MapPin className="absolute left-3.5 top-3.5 w-5 h-5 text-gray-500" />
+              <MapPin className="absolute start-3.5 top-3.5 w-5 h-5 text-gray-500" />
               <input
                 type="text"
-                placeholder="Your Location in Qatar (e.g. The Pearl, West Bay)"
+                placeholder={t.booking.placeholders.location}
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 required
-                className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl py-3 pl-11 pr-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 transition-colors"
+                className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl py-3 ps-11 pe-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 transition-colors"
               />
             </div>
 
             <div className="relative sm:col-span-2">
-              <Calendar className="absolute left-3.5 top-3.5 w-5 h-5 text-gray-500" />
+              <Calendar className="absolute start-3.5 top-3.5 w-5 h-5 text-gray-500" />
               <input
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 required
-                className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl py-3 pl-11 pr-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 transition-colors"
+                className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl py-3 ps-11 pe-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 transition-colors"
               />
             </div>
           </div>
         </div>
 
         <div className="border-t border-zinc-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-6">
-          <div className="text-center sm:text-left">
-            <span className="text-xs text-gray-400 uppercase tracking-wider block">Estimated Total Price</span>
+          <div className="text-center sm:text-start">
+            <span className="text-xs text-gray-400 uppercase tracking-wider block">{t.booking.total}</span>
             <div className="flex items-baseline gap-2 justify-center sm:justify-start">
               <span className="text-3xl sm:text-4xl font-display font-black text-yellow-400">
                 {calculateTotal()}
               </span>
-              <span className="text-sm font-bold text-gray-400">QAR</span>
+              <span className="text-sm font-bold text-gray-400">{t.common.qar}</span>
             </div>
           </div>
 
@@ -303,11 +307,11 @@ export default function BookingForm({ packages, selectedPackage, onPackageChange
             className="w-full sm:w-auto bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold px-8 py-4 rounded-xl shadow-xl shadow-red-600/20 flex items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.02] disabled:opacity-50"
           >
             {isSubmitting ? (
-              <span>Connecting to WhatsApp...</span>
+              <span>{t.booking.connecting}</span>
             ) : (
               <>
                 <Send className="w-5 h-5" />
-                <span>Book via WhatsApp Patrol</span>
+                <span>{t.booking.submit}</span>
               </>
             )}
           </button>
@@ -319,9 +323,9 @@ export default function BookingForm({ packages, selectedPackage, onPackageChange
           <div className="w-16 h-16 bg-amber-500/10 border border-amber-500 rounded-full flex items-center justify-center text-amber-400 mb-4 animate-bounce">
             🇩🇪
           </div>
-          <h3 className="text-2xl font-display font-bold text-white">Redirecting to WhatsApp...</h3>
+          <h3 className="text-2xl font-display font-bold text-white">{t.booking.redirectTitle}</h3>
           <p className="text-gray-400 text-sm max-w-md mt-2">
-            We are preparing your premium German detailing request. Please complete the message send in WhatsApp to secure your slot.
+            {t.booking.redirectText}
           </p>
         </div>
       )}

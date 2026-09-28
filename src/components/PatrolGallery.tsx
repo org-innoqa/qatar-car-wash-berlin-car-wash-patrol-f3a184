@@ -5,16 +5,14 @@ import patrol02 from '../assets/patrol/patrol-02.webp';
 import patrol03 from '../assets/patrol/patrol-03.webp';
 import patrol04 from '../assets/patrol/patrol-04.webp';
 import patrol05 from '../assets/patrol/patrol-05.webp';
+import { useI18n } from '../i18n';
 
-const PATROL_PHOTOS = [
-  { src: patrol01, alt: 'Berlin Wash Patrol mobile detailing van parked in Qatar' },
-  { src: patrol02, alt: 'Berlin Wash Patrol van in a Doha neighborhood' },
-  { src: patrol03, alt: 'Side view of the Berlin Wash Patrol service van' },
-  { src: patrol04, alt: 'Berlin Wash Patrol mobile car care unit in Doha' },
-  { src: patrol05, alt: 'Rear view of the Berlin Wash Patrol detailing van' }
-];
+// Alt texts live in src/i18n (patrol.photoAlts), in the same order.
+const PATROL_PHOTOS = [patrol01, patrol02, patrol03, patrol04, patrol05].map((src) => ({ src }));
 
 export default function PatrolGallery() {
+  const { t, dir } = useI18n();
+  const isRtl = dir === 'rtl';
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -44,13 +42,13 @@ export default function PatrolGallery() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto mb-10 max-w-3xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.22em] text-blue-300">
-            <MapPin className="h-3.5 w-3.5" /> Mobile Car Care · Qatar
+            <MapPin className="h-3.5 w-3.5" /> {t.patrol.badge}
           </span>
           <h2 className="mt-4 font-display text-3xl font-black text-white sm:text-5xl">
-            Meet the <span className="text-red-500">Berlin Wash Patrol</span>
+            {t.patrol.titleStart} <span className="text-red-500">{t.patrol.titleHighlight}</span>
           </h2>
           <p className="mt-4 text-gray-400">
-            Our fully equipped mobile detailing unit brings certified German-quality car care directly to your location.
+            {t.patrol.description}
           </p>
         </div>
 
@@ -81,30 +79,30 @@ export default function PatrolGallery() {
                   className="absolute inset-0 h-full w-full scale-110 object-cover opacity-35 blur-2xl"
                 />
                 <div className="absolute inset-0 bg-black/35" />
-                <img src={photo.src} alt={photo.alt} className="relative h-full w-full object-contain p-2 sm:p-4" />
+                <img src={photo.src} alt={t.patrol.photoAlts[index]} className="relative h-full w-full object-contain p-2 sm:p-4" />
               </div>
             ))}
 
             <div className="absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-black via-black/55 to-transparent px-6 pb-6 pt-24 sm:px-10">
               <p className="font-display text-xl font-black uppercase tracking-wider text-white sm:text-2xl">
-                Mobile car care — we come to you
+                {t.patrol.caption}
               </p>
-              <p className="mt-1 text-sm font-semibold text-yellow-400">Doha · Qatar · +974 5123 4443</p>
+              <p className="mt-1 text-sm font-semibold text-yellow-400">{t.patrol.location} · <span dir="ltr">+974 5123 4443</span></p>
             </div>
 
             <button
               type="button"
-              onClick={showPrevious}
+              onClick={isRtl ? showNext : showPrevious}
               className="absolute left-3 top-1/2 z-30 -translate-y-1/2 rounded-full border border-white/15 bg-black/65 p-3 text-white backdrop-blur-md transition hover:border-blue-400 hover:bg-blue-600 sm:left-6"
-              aria-label="Previous patrol photo"
+              aria-label={isRtl ? t.patrol.next : t.patrol.previous}
             >
               <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
             </button>
             <button
               type="button"
-              onClick={showNext}
+              onClick={isRtl ? showPrevious : showNext}
               className="absolute right-3 top-1/2 z-30 -translate-y-1/2 rounded-full border border-white/15 bg-black/65 p-3 text-white backdrop-blur-md transition hover:border-red-400 hover:bg-red-600 sm:right-6"
-              aria-label="Next patrol photo"
+              aria-label={isRtl ? t.patrol.previous : t.patrol.next}
             >
               <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
             </button>
@@ -121,7 +119,7 @@ export default function PatrolGallery() {
                     ? 'border-yellow-400 opacity-100 shadow-[0_0_16px_rgba(250,204,21,0.3)]'
                     : 'border-transparent opacity-45 hover:opacity-80'
                 }`}
-                aria-label={`Show patrol photo ${index + 1}`}
+                aria-label={t.patrol.showPhoto(index + 1)}
                 aria-current={index === activeIndex}
               >
                 <img src={photo.src} alt="" className="h-full w-full object-cover" />
